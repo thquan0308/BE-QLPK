@@ -18,7 +18,7 @@ let createNewUser = async (data) => {
                 gender: data.gender === '1' ? true : false,
                 roleId: data.roleId,
             })
-            resolve('ok! crrate a new user success!')
+            resolve('ok! create a new user success!')
         } catch (e) {
             reject(e)
         }
@@ -113,6 +113,7 @@ let deleteUserById = (userId) => {
         }
     })
 }
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
