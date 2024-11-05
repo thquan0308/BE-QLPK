@@ -172,18 +172,18 @@ let bulkCreateSchedule = (data) => {
                     }
                 )
 
-                //convert ngày tháng
-                if (existing && existing.length > 0) {
-                    existing = existing.map(item => {
-                        item.date = new Date(item.date).getTime()
-                        return item
+                // //convert ngày tháng
+                // if (existing && existing.length > 0) {
+                //     existing = existing.map(item => {
+                //         item.date = new Date(item.date).getTime()
+                //         return item
 
-                    })
-                }
+                //     })
+                // }
 
                 //kiểm tra sự khác nhau của 2 mảng 
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
-                    return a.timeType === b.timeType && a.date === b.date
+                    return a.timeType === b.timeType && +a.date === +b.date
                 })
 
                 //tạo data
@@ -221,6 +221,13 @@ let getScheduleByDate = (doctorId, date) => {
                         doctorId: doctorId,
                         date: date
                     },
+
+                    include: [
+                        { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
+
+                    ],
+                    raw: false,
+                    nest: true
                 })
 
                 if (!dataSchedule) dataSchedule = []
