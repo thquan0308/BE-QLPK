@@ -397,6 +397,7 @@ let getProfileDoctorById = (inputId) => {
         }
     })
 }
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     getAllDoctors: getAllDoctors,
